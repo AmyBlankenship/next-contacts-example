@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 
-import { type ToDo } from '../lib/todos'
+import { type Address } from '../lib/addresses'
 
 import styles from '../styles/Home.module.css'
 
@@ -45,8 +45,9 @@ const ToDoComponent = ({
 }
 
 export default function Home() {
-  const [newText, setNewText] = useState('')
-  const [toDos, setToDos] = useState<ToDo[]>([])
+  return <div></div>
+  /*const [newText, setNewText] = useState('')
+  const [toDos, setToDos] = useState<Address[]>([])
 
   const getToDos = async () => {
     const resp = await fetch('api/todos')
@@ -66,7 +67,7 @@ export default function Home() {
     await getToDos()
   }
 
-  const updateToDo = async (todo: ToDo) => {
+  const updateToDo = async (todo: Address) => {
     const newBody = {
       id: todo.id,
       done: !todo.done,
@@ -81,7 +82,7 @@ export default function Home() {
     await getToDos()
   }
 
-  const removeToDo = async (todo: ToDo) => {
+  const removeToDo = async (todo: Address) => {
     const newBody = {
       id: todo.id,
     }
@@ -171,5 +172,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  )*/
 }
