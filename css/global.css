@@ -1,0 +1,74 @@
+:root {
+    --dark: #2685BF;
+    --medium-dark: #3D9DD9;
+    --medium: #5FB6D9;
+    --light: #94D7F2;
+    --lightest: #BBE8F2;
+    --neutral: #3E3E3E;
+}
+
+* {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--neutral);
+}
+
+body {
+    max-width: 900px;
+    margin: auto;
+}
+
+.app {
+    display: flex;
+    flex-direction: row;
+}
+
+.app > div {
+    flex: 1 0 auto;
+}
+
+.app > .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    align-items: center;
+}
+
+.loader {
+    font-size: .8em;
+    text-align: center;
+    margin: 2em auto;
+}
+
+.loader-content {
+    width: 45px;
+    aspect-ratio: 1;
+    --c:no-repeat linear-gradient(#2685BF 0 0);
+    background:
+            var(--c) 0    0,
+            var(--c) 0    100%,
+            var(--c) 50%  50%,
+            var(--c) 100% 0,
+            var(--c) 100% 100%;
+    animation: loader-animation 1s infinite alternate;
+}
+
+@keyframes loader-animation {
+    0%,10%   {background-size:20% 100%}
+    50%      {background-size:20%  20%}
+    90%,100% {background-size:100% 20%}
+}
+
+.container {
+    border: 1px solid var(--medium-dark);
+}
+
+.fakeButton {
+    border: 2px solid var(--neutral);
+    background-color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    padding: .5em;
+    text-decoration: none;
+}

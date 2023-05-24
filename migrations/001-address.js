@@ -7,8 +7,8 @@ exports.up = async function (sql) {
       city VARCHAR(50),
       state VARCHAR(2),
       zip VARCHAR(10),
-      user_id INT REFERENCES orders ON DELETE CASCADE,
-      FOREIGN KEY (user_id) references Users(id)
+      user_id INT,
+      FOREIGN KEY (user_id) references Users(id) ON DELETE CASCADE
     )
   `
 }
