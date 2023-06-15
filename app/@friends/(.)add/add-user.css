@@ -1,0 +1,33 @@
+#add-user form {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    gap: .75em;
+    width: 300px;
+}
+
+#add-user h2 {
+    margin: 0;
+}
+
+#add-user label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+#add-user label:first-of-type {
+    padding-top: .75em;
+}
+#add-user label:last-of-type {
+    padding-bottom: .75em;
+}
+
+#add-user input {
+    width: 150px;
+}
+
+#add-user button {
+    padding: .75em;
+}

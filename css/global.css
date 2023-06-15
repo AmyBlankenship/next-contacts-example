@@ -10,11 +10,16 @@
 * {
     font-family: 'Open Sans', Arial, sans-serif;
     color: var(--neutral);
+    box-sizing: border-box;
 }
 
 body {
     max-width: 900px;
     margin: auto;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, .65);
 }
 
 .app {
@@ -34,6 +39,10 @@ body {
     align-items: center;
 }
 
+.app > .container > .fakeButton {
+    background: var(--lightest);
+}
+
 .loader {
     font-size: .8em;
     text-align: center;
@@ -43,13 +52,14 @@ body {
 .loader-content {
     width: 45px;
     aspect-ratio: 1;
+    /*noinspection CssInvalidFunction*/
     --c:no-repeat linear-gradient(#2685BF 0 0);
     background:
-            var(--c) 0    0,
-            var(--c) 0    100%,
-            var(--c) 50%  50%,
-            var(--c) 100% 0,
-            var(--c) 100% 100%;
+        var(--c) 0    0,
+        var(--c) 0    100%,
+        var(--c) 50%  50%,
+        var(--c) 100% 0,
+        var(--c) 100% 100%;
     animation: loader-animation 1s infinite alternate;
 }
 

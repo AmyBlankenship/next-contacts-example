@@ -1,0 +1,47 @@
+.friends-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 2px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.friends-list li {
+    cursor: pointer;
+    border-bottom: 1px solid var(--light);
+}
+
+.friend-card {
+    display: flex;
+    flex-direction: row;
+    padding: 1em .5em;
+    gap: 1.2em;
+}
+
+.friends-list li:last-of-type {
+    border-bottom: none;
+}
+
+.friend-card .avatar {
+    width: 120px;
+    height: 120px;
+    background: lightgray;
+    border: var(--neutral);
+    flex: 0 0 120px;
+}
+
+.friend-card .details {
+    flex: 1 0 auto;
+}
+
+.friend-card .controls {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.friend-card h2 {
+    color: var(--medium-dark);
+}

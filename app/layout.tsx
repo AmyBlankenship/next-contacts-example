@@ -10,7 +10,10 @@ export const metadata = {
 
 
 const getUsers = async () => {
-  const result = await fetch(`${process.env.HOSTNAME}api/users`, {method: 'GET'});
+  const result = await fetch(
+    `${process.env.HOSTNAME}api/users`,
+    { method: 'GET', next: { revalidate: 300 }, }
+  );
   if (result.ok) {
     return result.json();
   }

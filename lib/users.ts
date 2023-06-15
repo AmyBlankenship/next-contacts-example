@@ -22,10 +22,10 @@ export async function pick(userId: string) {
   `;
 }
 
-export async function create(user: User) {
+export async function create(user: Partial<User>) {
   return sql<User[]>`
     INSERT INTO Users (first_name, last_name, avatar_url) 
-    VALUES (${user.first_name}, ${user.last_name}, '')
+    VALUES (${user.first_name ?? ''}, ${user.last_name ?? ''}, '')
     RETURNING id, first_name, last_name, avatar_url
   `;
 }
