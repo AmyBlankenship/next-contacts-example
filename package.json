@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "migrate:up": "ley up",
-    "migrate:down": "ley down"
+    "migrate:down": "ley down --all"
   },
   "dependencies": {
     "@types/node": "^18.11.9",

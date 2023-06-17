@@ -1,23 +1,32 @@
 'use client';
-import {useCallback, useEffect, useRef} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
+import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 import {addMe} from "./actions";
 import './add-user.css';
-import {usePathname, useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+
 
 export default async function AddFriend() {
   const modalRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
-  const pathName = usePathname();
+  const {pending} = useFormStatus();
+  const [isSent, setIsSent] = useState(false);
   const closeMe = useCallback(() => {
+    router.refresh();
     router.back();
   }, [router]);
+
+  const afterSubmit = useCallback(() => {
+    setIsSent(true)
+  }, [setIsSent])
 
   useEffect(() => {
     let result = () => {};
     const currentCloseme = closeMe;
-    if (modalRef.current) {
-      //can change before we call the callback
-      const modal = modalRef.current;
+    if (!modalRef) return;
+    //can change before we call the callback
+    const modal = modalRef?.current;
+    if (modal) {
       if (!modal.open) {
         modal.showModal();
       }
@@ -30,11 +39,15 @@ export default async function AddFriend() {
       }
       return result;
     }
-  }, [modalRef, pathName, closeMe]);
+  }, [modalRef, closeMe]);
+
+  useEffect(() => {
+    if (isSent) closeMe();
+  }, [isSent, pending])
 
   return (
     <dialog ref={modalRef} id="add-user">
-      <form action={addMe} onSubmit={closeMe}>
+      <form action={addMe} onSubmit={afterSubmit}>
         <h2>Create New Friend</h2>
         <label>First Name
           <input type="text" id="first_name" name="first_name" autoComplete="nope" required />

@@ -12,7 +12,7 @@ export const metadata = {
 const getUsers = async () => {
   const result = await fetch(
     `${process.env.HOSTNAME}api/users`,
-    { method: 'GET', next: { revalidate: 300 }, }
+    { method: 'GET', next: { revalidate: 30 }, }
   );
   if (result.ok) {
     return result.json();
@@ -39,7 +39,7 @@ export default async function RootLayout({
               (<FriendsList friends={friendList} />):
               (<p className="no-friends">No friends yet</p>)
             }
-            <Link href="/add" className="fakeButton">Add Friend</Link>
+            <Link href="/add" className="fakeButton" >Add Friend</Link>
             {friends}
           </div>
           {addresses}
