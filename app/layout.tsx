@@ -3,6 +3,8 @@ import React from "react";
 import '../css/global.css';
 import FriendsList from "./@friends/friendsList";
 
+export const revalidate = 0;
+
 export const metadata = {
   title: 'Example contacts app',
   description: 'Amy Blankenship\'s learning project',
@@ -12,7 +14,7 @@ export const metadata = {
 const getUsers = async () => {
   const result = await fetch(
     `${process.env.HOSTNAME}api/users`,
-    { method: 'GET', next: { revalidate: 30 }, }
+    { method: 'GET', cache: 'no-store', }
   );
   if (result.ok) {
     return result.json();

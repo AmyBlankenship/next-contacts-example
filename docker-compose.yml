@@ -1,0 +1,45 @@
+# modified from https://github.com/productioncoder/test-node-with-docker/blob/master/docker-compose.yml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_ci
+    environment:
+      # Note that these values only apply to the container "world."
+      # This is ok to do because I didn't take it all the way to deploying it anywhere
+      # If I were deploying it, I'd run docker-compose with these vars in the command line,
+      # not hardcoding them into a file we check in!
+      # create a role with name
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: pgpassword
+    # postgres image per default runs on port 5432
+    # we need to expose the container to the host machine so we can run our tests
+    # I already was running Postgres locally, so remapping
+    ports:
+      - '2345:5432'
+    volumes:
+      # docker will run SQL files that are copied to /docker-entrypoint-initdb.d automatically
+      # this gives us an easy way to run migrations / create db tables
+      # the order in which they are run is determined by the prefix
+      # so always prefix your migration files with 01_, 02_, etc
+      # migrations was already being used for ley, so the ones in this project are in migrations_ci
+      - ./migrations_ci:/docker-entrypoint-initdb.d
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      # you need to use the container name as the db host
+      # when running in docker-compose. If you use localhost, the container
+      # would try to connect to itself
+      # https://stackoverflow.com/questions/33357567/econnrefused-for-postgres-on-nodejs-with-dockers
+      DATABASE_URL: postgres://postgres:pgpassword@postgresql_ci:5432/postgres?ssl=false
+
+      # this needs to be the container port on which the db runs (the right most number under ports in the postgres service)
+      # i.e. we need to specify container port and not the host port
+      DB_PORT: 5432
+      # This lets the server components find their relative endpoints
+      HOSTNAME: http://localhost:3000/
+    depends_on:
+      - postgres
