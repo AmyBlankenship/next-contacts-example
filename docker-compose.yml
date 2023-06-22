@@ -1,7 +1,7 @@
 # modified from https://github.com/productioncoder/test-node-with-docker/blob/master/docker-compose.yml
 version: '3.8'
 services:
-  postgres:
+  pg:
     image: postgres:15
     container_name: postgres_ci
     environment:
@@ -25,16 +25,21 @@ services:
       # so always prefix your migration files with 01_, 02_, etc
       # migrations was already being used for ley, so the ones in this project are in migrations_ci
       - ./migrations_ci:/docker-entrypoint-initdb.d
+    # https://stackoverflow.com/a/67059603/854556
+    healthcheck:
+      test: "pg_isready --username=postgres && psql --username=postgres --list"
+      timeout: 5s
+      retries: 20
   app:
     build: .
     ports:
       - '3000:3000'
     environment:
-      # you need to use the container name as the db host
+      # you need to use the service name as the db host
       # when running in docker-compose. If you use localhost, the container
       # would try to connect to itself
       # https://stackoverflow.com/questions/33357567/econnrefused-for-postgres-on-nodejs-with-dockers
-      DATABASE_URL: postgres://postgres:pgpassword@postgresql_ci:5432/postgres?ssl=false
+      DATABASE_URL: postgres://postgres:pgpassword@pg:5432/postgres?ssl=false
 
       # this needs to be the container port on which the db runs (the right most number under ports in the postgres service)
       # i.e. we need to specify container port and not the host port
@@ -42,4 +47,4 @@ services:
       # This lets the server components find their relative endpoints
       HOSTNAME: http://localhost:3000/
     depends_on:
-      - postgres
+      - pg
