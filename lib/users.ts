@@ -48,3 +48,7 @@ export async function remove(userId: string) {
     RETURNING id, first_name, last_name, avatar_url
   `;
 }
+
+export async function testCleanUpUsers() {
+  return sql`TRUNCATE Users CASCADE`;
+}

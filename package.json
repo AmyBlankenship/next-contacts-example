@@ -6,9 +6,9 @@
     "start": "next start",
     "migrate:up": "ley up",
     "migrate:down": "ley down --all",
-    "test": "playwright test",
-    "pretest": "docker-compose up -d --wait pg",
-    "posttest": "docker-compose down -v --remove-orphans"
+    "test:e2e": "playwright test",
+    "pretest:e2e": "docker-compose up -d --wait pg",
+    "posttest:e2e": "docker-compose down -v --remove-orphans"
   },
   "dependencies": {
     "@types/node": "^18.11.9",
