@@ -32,10 +32,15 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    headless: false,
   },
 
   /* Configure projects for major browsers */
   projects: [
+    /* dependencies added to make sure ache browser
+       runs in sequence to minimize beforeEach/afterEach
+       caused by collisions
+     */
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
@@ -44,11 +49,13 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      dependencies: ['chromium'],
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      dependencies: ['firefox'],
     },
 
     /* Test against mobile viewports. */
