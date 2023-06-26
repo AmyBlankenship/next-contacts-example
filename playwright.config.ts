@@ -51,12 +51,17 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'] },
       dependencies: ['chromium'],
     },
-
+    {
+      name: 'Microsoft Edge',
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
+      dependencies: ['firefox'],
+    },
+/*
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
       dependencies: ['firefox'],
-    },
+    },*/
 
     /* Test against mobile viewports. */
     // {

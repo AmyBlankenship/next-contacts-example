@@ -1,0 +1,33 @@
+.ir-modal form {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    gap: .75em;
+    width: 300px;
+}
+
+.ir-modal h2 {
+    margin: 0;
+}
+
+.ir-modal label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+.ir-modal label:first-of-type {
+    padding-top: .75em;
+}
+.ir-modal label:last-of-type {
+    padding-bottom: .75em;
+}
+
+.ir-modal input {
+    width: 150px;
+}
+
+.ir-modal button {
+    padding: .75em;
+}

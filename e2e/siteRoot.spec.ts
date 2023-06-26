@@ -7,9 +7,11 @@ const browserUsers = {
   webkit: {first_name: 'Carmen', last_name: 'San Diego'},
 }
 
-test.beforeEach(async() => {
+test.describe.configure({mode:"serial"});
+
+test.afterEach(async() => {
   testCleanUpUsers();
-})
+});
 
 test('default state', async ({ page }) => {
   await page.goto('http://localhost:3000/');

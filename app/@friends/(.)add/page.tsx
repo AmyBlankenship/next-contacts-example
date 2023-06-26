@@ -23,7 +23,7 @@ export default async function AddFriend() {
         <label>Last Name
           <input type="text" id="last_name" name="last_name" autoComplete="nope" required />
         </label>
-        <button>Create Friend</button>
+        <button>Create Friend</button><button type="button" onClick={goBack}>Cancel</button>
       </form>
     </dialog>
   )
