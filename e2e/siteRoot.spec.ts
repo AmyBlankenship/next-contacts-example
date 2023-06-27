@@ -35,7 +35,6 @@ test.describe('working with existing users', () => {
     const user = browserUsers[browserName] ?? {first_name: 'Scooby', last_name: 'Doo'};
     const users = await create(user);
     userId = users[0]?.id;
-    console.log({userId})
   });
   test('updating user', async ({ page , browserName}) => {
     await page.goto('http://localhost:3000/');
@@ -51,5 +50,17 @@ test.describe('working with existing users', () => {
     await page.getByLabel('Last Name').fill(editedLastName);
     await page.getByRole('button', {name: 'Update Friend'}).click();
     await expect(page.getByRole('heading', { name: `${user.first_name} ${editedLastName}` })).toBeVisible();
+  });
+  test('deleting user', async ({ page , browserName}) => {
+    await page.goto('http://localhost:3000/');
+    //allows us to see newly added user
+    await page.reload();
+    const user = browserUsers[browserName] ?? {first_name: 'Scooby', last_name: 'Doo'};
+    await page.getByRole('listitem')
+      .filter({hasText: `${user.first_name} ${user.last_name}`})
+      .getByText('Delete').click();
+    await expect(page.getByRole('heading', {name: `Delete ${user.first_name} ${user.last_name}?`})).toBeVisible();
+    await page.getByRole('button', {name: 'Delete Friend'}).click();
+    await expect(page.getByRole('heading', { name: `${user.first_name} ${user.last_name}` })).toHaveCount(0);
   });
 })
