@@ -62,3 +62,7 @@ export async function remove(id: string) {
     RETURNING id, line_1, line_2, city, state, zip, user_id
   `;
 }
+
+export async function testCleanUpAddresses() {
+  return sql`Truncate Address`;
+}

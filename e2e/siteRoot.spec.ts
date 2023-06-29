@@ -1,11 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { testCleanUpUsers, create } from "../lib/users";
-
-const browserUsers = {
-  chromium: {first_name: 'Amelia', last_name: 'Earhardt'},
-  firefox: {first_name: 'Frank', last_name: 'Stein'},
-  webkit: {first_name: 'Carmen', last_name: 'San Diego'},
-}
+import {browserUsers} from "./data";
 
 test.describe.configure({mode:"serial"});
 
