@@ -1,6 +1,6 @@
 'use client';
 import {useEffect, useRef, useState} from "react";
-import useExitInterceptingRouteOnFormSubmit from "../../../../hooks/useExitInterceptingRouteOnFormSubmit";
+import useExitRouteOnFormSubmit from "../../../../hooks/useExitRouteOnFormSubmit";
 import useDialogModal from "../../../../hooks/useDialogModal";
 import {User} from "../../../../lib/users";
 import {eradicateFriend} from "./actions";
@@ -9,10 +9,10 @@ import '../../modal.css';
 
 export default function RemoveFriendPage({ params:{ id } }: { params: { id: string } }) {
   const modalRef = useRef<HTMLDialogElement>(null);
-  const { goBack, afterSubmit } = useExitInterceptingRouteOnFormSubmit();
+  const { goBack, afterSubmit } = useExitRouteOnFormSubmit();
 
   const [user, setUser] = useState<User | undefined>();
-
+console.log('remove');
   useEffect(() => {
     function getUser() {
       fetch(`../api/users/${id}`).then(async (response) => {

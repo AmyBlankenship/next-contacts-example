@@ -34,7 +34,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <h1>My Friends</h1>
         <div className="app">
           <div className="container">
             {friendList.length ?
@@ -45,6 +45,7 @@ export default async function RootLayout({
             {friends}
           </div>
           {addresses}
+          {children}
         </div>
       </body>
     </html>

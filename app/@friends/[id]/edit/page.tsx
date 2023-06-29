@@ -1,6 +1,6 @@
 'use client';
 import {ChangeEvent, useCallback, useEffect, useRef, useState} from "react";
-import useExitInterceptingRouteOnFormSubmit from "../../../../hooks/useExitInterceptingRouteOnFormSubmit";
+import useExitRouteOnFormSubmit from "../../../../hooks/useExitRouteOnFormSubmit";
 import useDialogModal from "../../../../hooks/useDialogModal";
 import {User} from "../../../../lib/users";
 import {updateFriend} from "./actions";
@@ -9,9 +9,11 @@ import '../../modal.css';
 
 export default function EditPage({ params:{ id } }: { params: { id: string } }) {
   const modalRef = useRef<HTMLDialogElement>(null);
-  const { goBack, afterSubmit } = useExitInterceptingRouteOnFormSubmit();
+  const { goBack, afterSubmit } = useExitRouteOnFormSubmit();
 
   const [user, setUser] = useState<User | undefined>();
+
+  console.log('edit');
 
   useEffect(() => {
     function getUser() {
