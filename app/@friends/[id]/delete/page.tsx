@@ -1,8 +1,7 @@
 'use client';
-import {useEffect, useRef, useState} from "react";
+import { useRef } from "react";
 import useExitRouteOnFormSubmit from "../../../../hooks/useExitRouteOnFormSubmit";
 import useDialogModal from "../../../../hooks/useDialogModal";
-import {User} from "../../../../lib/users";
 import {eradicateFriend} from "./actions";
 
 import '../../modal.css';
