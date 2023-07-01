@@ -6,24 +6,22 @@ import {User} from "../../../../lib/users";
 import {updateFriend} from "./actions";
 
 import '../../modal.css';
+import useGetUserFromList from "../../../../hooks/useGetUserFromList";
 
-export default function EditPage({ params:{ id } }: { params: { id: string } }) {
+export const revalidate = 0;
+
+export default function EditPage({ params:{ id } }: FriendParams) {
   const modalRef = useRef<HTMLDialogElement>(null);
   const { goBack, afterSubmit } = useExitRouteOnFormSubmit();
 
   const [user, setUser] = useState<User | undefined>();
 
-  console.log('edit');
+
+  const dbUser = useGetUserFromList(id);
 
   useEffect(() => {
-    function getUser() {
-      fetch(`../api/users/${id}`).then(async (response) => {
-        const user = await response.json();
-        setUser(user);
-      });
-    }
-    getUser();
-  }, []);
+    if (dbUser) setUser(dbUser);
+  }, [dbUser]);
 
   useDialogModal({onClose: goBack, modalRef});
 

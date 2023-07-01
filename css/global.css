@@ -73,6 +73,10 @@ dialog::backdrop {
     border: 1px solid var(--medium-dark);
 }
 
+.container:where(:not(:first-child)){
+    border-left: none;
+}
+
 .fakeButton {
     border: 2px solid var(--neutral);
     background-color: #FFF;

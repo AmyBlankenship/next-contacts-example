@@ -49,12 +49,10 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-      dependencies: ['chromium'],
     },
     {
       name: 'Microsoft Edge',
       use: { ...devices['Desktop Edge'], channel: 'msedge' },
-      dependencies: ['firefox'],
     },
 /*
     {

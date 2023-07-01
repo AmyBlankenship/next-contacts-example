@@ -4,13 +4,19 @@
     list-style: none;
     gap: 2px;
     padding: 0;
-    margin: 0;
+    margin: 0 0 1em;
     width: 100%;
 }
 
 .friends-list li {
-    cursor: pointer;
     border-bottom: 1px solid var(--light);
+}
+
+.friends-list .select-friend {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0);
+    position: absolute;
+    inset: 0;
 }
 
 .friend-card {
@@ -18,10 +24,7 @@
     flex-direction: row;
     padding: 1em .5em;
     gap: 1.2em;
-}
-
-.friends-list li:last-of-type {
-    border-bottom: none;
+    position: relative;
 }
 
 .friend-card .avatar {
@@ -40,6 +43,8 @@
     display: flex;
     flex-direction: row;
     gap: 1em;
+    position: relative;
+    z-index: 10;
 }
 
 .friend-card h2 {

@@ -25,12 +25,11 @@ const getUsers = async () => {
 export default async function RootLayout({
   children, friends, addresses
 }: {
-  children: React.ReactNode,
-  friends: React.ReactNode,
-  addresses: React.ReactNode
+  children: React.ReactNode;
+  friends: React.ReactNode;
+  addresses: React.ReactNode;
 }) {
   const friendList = await getUsers();
-
   return (
     <html lang="en">
       <body>
@@ -42,9 +41,10 @@ export default async function RootLayout({
               (<p className="no-friends">No friends yet</p>)
             }
             <Link href="/add" className="fakeButton" >Add Friend</Link>
-            {friends}
           </div>
           {addresses}
+          {/* friends are all modals */}
+          {friends}
           {children}
         </div>
       </body>
