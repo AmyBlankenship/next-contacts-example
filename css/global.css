@@ -45,8 +45,8 @@ dialog::backdrop {
 
 .loader {
     font-size: .8em;
+    margin: auto;
     text-align: center;
-    margin: 2em auto;
 }
 
 .loader-content {
@@ -61,6 +61,7 @@ dialog::backdrop {
         var(--c) 100% 0,
         var(--c) 100% 100%;
     animation: loader-animation 1s infinite alternate;
+    margin: auto;
 }
 
 @keyframes loader-animation {

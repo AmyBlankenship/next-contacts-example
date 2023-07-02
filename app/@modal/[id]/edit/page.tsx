@@ -5,7 +5,7 @@ import useDialogModal from "../../../../hooks/useDialogModal";
 import {User} from "../../../../lib/users";
 import {updateFriend} from "./actions";
 
-import '../../modal.css';
+import '../../../@friends/modal.css';
 import useGetUserFromList from "../../../../hooks/useGetUserFromList";
 
 export const revalidate = 0;

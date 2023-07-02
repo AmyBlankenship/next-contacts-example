@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     list-style: none;
-    gap: 2px;
+    gap: 0;
     padding: 0;
     margin: 0 0 1em;
     width: 100%;
@@ -10,6 +10,10 @@
 
 .friends-list li {
     border-bottom: 1px solid var(--light);
+}
+
+.friends-list li.selected {
+    background: var(--light);
 }
 
 .friends-list .select-friend {
