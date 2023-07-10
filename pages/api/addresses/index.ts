@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { type Address } from '../../../lib/addresses'
-import * as addresses from '../../../lib/addresses'
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { type Address } from '../../../lib/addresses';
+import * as addresses from '../../../lib/addresses';
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,7 +10,8 @@ export default async function handler(
     case 'GET':
       let user_id = req.query.user_id;
       if (Array.isArray(user_id)) user_id = user_id[0];
-      return res.status(200).json(await addresses.list(user_id ?? ''));
+      const addressList = await addresses.list(user_id ?? '');
+      return res.status(200).json(addressList);
     case 'POST':
       return res.status(201).json(await addresses.create(req.body))
     case 'PUT':

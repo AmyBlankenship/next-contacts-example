@@ -1,0 +1,25 @@
+.address-list {
+    list-style: none;
+    background: var(--light);
+    padding: .5em;
+}
+.address-list li {
+    background: #FFF;
+}
+.address-card {
+    display: flex;
+    gap: .5em;
+    flex-wrap: wrap;
+}
+
+.address-card span {
+    display: block;
+}
+
+.address-card .street-address {
+    width: 100%;
+}
+
+.address-card .locality :after {
+    content: ',';
+}

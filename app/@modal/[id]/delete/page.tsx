@@ -17,7 +17,7 @@ export default function RemoveFriendPage({ params:{ id } }: FriendParams) {
 
   useDialogModal({onClose: goBack, modalRef});
 
-  return (<dialog ref={modalRef} className="ir-modal" id="update-user">
+  return (<dialog ref={modalRef} className="ir-modal" id="delete-user">
     <form action={eradicateFriend} onSubmit={afterSubmit}>
       <h2>{user ? `Delete ${user?.first_name} ${user?.last_name}?`: ''}</h2>
       <input type="hidden" id="id" name="id" value={id}/>

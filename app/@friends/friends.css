@@ -54,3 +54,7 @@
 .friend-card h2 {
     color: var(--medium-dark);
 }
+
+.friend-card .avatar, .friend-card h2 {
+    pointer-events: none;
+}
