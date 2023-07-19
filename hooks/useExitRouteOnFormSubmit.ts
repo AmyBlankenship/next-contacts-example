@@ -15,6 +15,7 @@ export default function useExitRouteOnFormSubmit() {
   }, [setIsSent]);
 
   useEffect(() => {
+    console.log({pending});
     if (isSent) {
       router.refresh();
       goBack();

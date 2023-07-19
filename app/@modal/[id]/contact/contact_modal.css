@@ -1,0 +1,25 @@
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.contact-form label {
+    position: relative;
+}
+
+.contact-form input {
+    position: absolute;
+    left: 50px;
+    right: 0;
+}
+.region_details {
+    display: flex;
+    justify-content: stretch;
+    gap: .5em;
+}
+
+.region_details input {
+    position: unset;
+    margin-left: .5em;
+}

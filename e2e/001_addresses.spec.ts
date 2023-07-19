@@ -28,8 +28,8 @@ test.beforeEach(async({page}) => {
   await page.goto('http://localhost:3000/');
 })
 
-test.afterEach(() => {
-  testCleanUpAddresses();
+test.afterEach(async () => {
+  await testCleanUpAddresses();
 });
 
 test.afterAll(() => {
@@ -55,6 +55,7 @@ test('adding address', async ({ page, browserName}) => {
     .click();
 
   await page.getByRole('link', { name: 'New Contact' }).click();
+  await expect(page.getByRole('heading', {name: 'Add Contact'})).toBeVisible();
   await page.getByLabel('Line 1').fill(address!.line_1);
   await page.getByLabel('Line 2').fill(address!.line_2);
   await page.getByLabel('City').fill(address!.city);
@@ -63,9 +64,15 @@ test('adding address', async ({ page, browserName}) => {
 
   await page.getByRole('button', {name: 'Create Contact'}).click();
 
-  each(address, async (line) => {
-    if (!!line) { // line 2 text sometimes empty
-      await expect(page.getByText(line)).toBeVisible();
-    }
-  });
+  await expect(page.getByRole('heading', {name: 'Add Contact'})).toBeHidden();
+
+
+  await expect(page.getByText(address.line_1)).toBeVisible();
+  if (!!address.line_2) {
+    await expect(page.getByText(address.line_2)).toBeVisible();
+  }
+  await expect(page.getByText(address.city)).toBeVisible();
+  await expect(page.getByText(address.state)).toBeVisible();
+  await expect(page.getByText(address.zip)).toBeVisible();
+
 })

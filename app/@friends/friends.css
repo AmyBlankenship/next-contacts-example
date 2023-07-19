@@ -13,7 +13,7 @@
 }
 
 .friends-list li.selected {
-    background: var(--light);
+    background: var(--lightest);
 }
 
 .friends-list .select-friend {

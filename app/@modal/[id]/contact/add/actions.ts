@@ -1,3 +1,4 @@
+'use server';
 import {create} from "../../../../../lib/addresses";
 import {formHelper} from "../../../../../lib/util";
 import {revalidatePath} from "next/cache";
@@ -14,5 +15,6 @@ const contactKeys = [
 export const addContact = async (data: FormData) => {
   const request = formHelper(data, contactKeys);
   await create(request);
+  console.log('revalidating', `/${request.user_id}`);
   revalidatePath(`/${request.user_id}`);
 }

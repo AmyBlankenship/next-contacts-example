@@ -5,7 +5,7 @@ export default function AddressList ({ addressList }: { addressList: Address[] }
   return (<ul className="address-list">
     {
       addressList.map((address) => {
-        return (<li>
+        return (<li key={address.id}>
           <AddressCard address={address} />
         </li>)
       })

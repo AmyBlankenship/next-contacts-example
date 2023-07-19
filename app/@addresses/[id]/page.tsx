@@ -1,9 +1,14 @@
-import {Address} from "../../../lib/addresses";
-import AddressList from "./addressList";
 import Link from "next/link";
 import React from "react";
+import {Address} from "../../../lib/addresses";
+import AddressList from "./addressList";
+import '../addresses.css'
+
+export const revalidate = 0;
 
 const getContacts = async (id:string)  => {
+  //throw into draft mode for testing
+  await fetch(`${process.env.HOSTNAME}api/checkDraftMode`)
   const result = await fetch(
     `${process.env.HOSTNAME}api/addresses/?user_id=${id}`
   );

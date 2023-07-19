@@ -87,3 +87,9 @@ dialog::backdrop {
     padding: .5em;
     text-decoration: none;
 }
+
+.form-buttons {
+    display: flex;
+    justify-content: stretch;
+    gap: .5em;
+}

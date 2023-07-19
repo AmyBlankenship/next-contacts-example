@@ -1,15 +1,24 @@
+.addresses h3 {
+    margin: .6em;
+}
 .address-list {
     list-style: none;
-    background: var(--light);
-    padding: .5em;
+    padding-left: 0;
 }
 .address-list li {
     background: #FFF;
+    margin: .6em;
+    border-bottom: 1px solid var(--neutral);
 }
+.address-list li:last-child {
+    border-bottom: none;
+}
+
 .address-card {
     display: flex;
     gap: .5em;
     flex-wrap: wrap;
+    min-width: 150px;
 }
 
 .address-card span {
@@ -17,9 +26,9 @@
 }
 
 .address-card .street-address {
-    width: 100%;
+    width: 80%;
 }
 
-.address-card .locality :after {
+.address-card .locality:after {
     content: ',';
 }

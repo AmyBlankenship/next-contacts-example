@@ -6,6 +6,7 @@
     "start": "next start",
     "migrate:up": "ley up",
     "migrate:down": "ley down --all",
+    "playwrightDebugDev": "cross-env NODE_ENV=test npm run dev",
     "test:e2e": "playwright test",
     "pretest:e2e": "docker-compose up -d --wait pg",
     "posttest:e2e": "docker-compose down -v --remove-orphans"
