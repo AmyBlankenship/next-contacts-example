@@ -8,7 +8,8 @@ export default async function handler(
 ) {
   switch (req.method) {
     case 'GET':
-      return res.status(200).json(await users.list())
+      const userList = await users.list();
+      return res.status(200).json(userList);
     case 'POST':
       const created = await users.create(req.body);
       return res.status(201).json(created[0]);

@@ -1,16 +1,12 @@
 import { test, expect } from '@playwright/test';
 import { testCleanUpUsers, create } from "../lib/users";
-
-const browserUsers = {
-  chromium: {first_name: 'Amelia', last_name: 'Earhardt'},
-  firefox: {first_name: 'Frank', last_name: 'Stein'},
-  webkit: {first_name: 'Carmen', last_name: 'San Diego'},
-}
+import {browserUsers} from "./data";
 
 test.describe.configure({mode:"serial"});
 
 test.afterEach(async() => {
   testCleanUpUsers();
+  console.log('cleaning up root');
 });
 
 test('default state', async ({ page }) => {
@@ -32,6 +28,7 @@ test('adding user', async ({ page, browserName }) => {
 test.describe('working with existing users', () => {
   let userId = 0
   test.beforeEach(async({browserName}) => {
+    console.log('creating', browserUsers[browserName]);
     const user = browserUsers[browserName] ?? {first_name: 'Scooby', last_name: 'Doo'};
     const users = await create(user);
     userId = users[0]?.id;
@@ -53,12 +50,11 @@ test.describe('working with existing users', () => {
   });
   test('deleting user', async ({ page , browserName}) => {
     await page.goto('http://localhost:3000/');
-    //allows us to see newly added user
-    await page.reload();
     const user = browserUsers[browserName] ?? {first_name: 'Scooby', last_name: 'Doo'};
     await page.getByRole('listitem')
       .filter({hasText: `${user.first_name} ${user.last_name}`})
       .getByText('Delete').click();
+    console.log({userId});
     await expect(page.getByRole('heading', {name: `Delete ${user.first_name} ${user.last_name}?`})).toBeVisible();
     await page.getByRole('button', {name: 'Delete Friend'}).click();
     await expect(page.getByRole('heading', { name: `${user.first_name} ${user.last_name}` })).toHaveCount(0);

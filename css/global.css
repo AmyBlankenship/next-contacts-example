@@ -45,8 +45,8 @@ dialog::backdrop {
 
 .loader {
     font-size: .8em;
+    margin: auto;
     text-align: center;
-    margin: 2em auto;
 }
 
 .loader-content {
@@ -61,6 +61,7 @@ dialog::backdrop {
         var(--c) 100% 0,
         var(--c) 100% 100%;
     animation: loader-animation 1s infinite alternate;
+    margin: auto;
 }
 
 @keyframes loader-animation {
@@ -73,6 +74,10 @@ dialog::backdrop {
     border: 1px solid var(--medium-dark);
 }
 
+.container:where(:not(:first-child)){
+    border-left: none;
+}
+
 .fakeButton {
     border: 2px solid var(--neutral);
     background-color: #FFF;
@@ -81,4 +86,10 @@ dialog::backdrop {
     font-weight: bold;
     padding: .5em;
     text-decoration: none;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: stretch;
+    gap: .5em;
 }

@@ -3,13 +3,13 @@ import {useRef} from "react";
 import {addMe} from "./actions";
 import './add-user.css';
 import useDialogModal from "../../../hooks/useDialogModal";
-import useExitInterceptingRouteOnFormSubmit from "../../../hooks/useExitInterceptingRouteOnFormSubmit";
+import useExitRouteOnFormSubmit from "../../../hooks/useExitRouteOnFormSubmit";
 
 
 export default async function AddFriend() {
   const modalRef = useRef<HTMLDialogElement>(null);
 
-  const { goBack, afterSubmit } = useExitInterceptingRouteOnFormSubmit();
+  const { goBack, afterSubmit } = useExitRouteOnFormSubmit();
 
   useDialogModal({onClose: goBack, modalRef});
 

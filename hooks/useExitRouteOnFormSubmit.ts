@@ -2,12 +2,11 @@ import {useRouter} from "next/navigation";
 import {useCallback, useEffect, useState} from "react";
 import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 
-export default function useExitInterceptingRouteOnFormSubmit() {
+export default function useExitRouteOnFormSubmit() {
   const router = useRouter();
   const {pending} = useFormStatus();
   const [isSent, setIsSent] = useState(false);
   const goBack = useCallback(() => {
-    router.refresh();
     router.back();
   }, [router]);
 
@@ -16,7 +15,11 @@ export default function useExitInterceptingRouteOnFormSubmit() {
   }, [setIsSent]);
 
   useEffect(() => {
-    if (isSent) goBack();
+    console.log({pending});
+    if (isSent) {
+      router.refresh();
+      goBack();
+    }
   }, [isSent, pending])
 
   return { afterSubmit, goBack };

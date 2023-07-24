@@ -1,7 +1,5 @@
-import Link from "next/link";
 import React from "react";
 import '../css/global.css';
-import FriendsList from "./@friends/friendsList";
 
 export const revalidate = 0;
 
@@ -11,40 +9,23 @@ export const metadata = {
 }
 
 
-const getUsers = async () => {
-  const result = await fetch(
-    `${process.env.HOSTNAME}api/users`,
-    { method: 'GET', cache: 'no-store', }
-  );
-  if (result.ok) {
-    return result.json();
-  }
-  return [];
-}
-
 export default async function RootLayout({
-  children, friends, addresses
+  children, friends, addresses, modal
 }: {
-  children: React.ReactNode,
-  friends: React.ReactNode,
-  addresses: React.ReactNode
+  children: React.ReactNode;
+  friends: React.ReactNode;
+  addresses: React.ReactNode;
+  modal: React.ReactNode;
 }) {
-  const friendList = await getUsers();
-
   return (
     <html lang="en">
       <body>
-        {children}
+        <h1>My Friends</h1>
         <div className="app">
-          <div className="container">
-            {friendList.length ?
-              (<FriendsList friends={friendList} />):
-              (<p className="no-friends">No friends yet</p>)
-            }
-            <Link href="/add" className="fakeButton" >Add Friend</Link>
-            {friends}
-          </div>
+          {friends}
           {addresses}
+          {children}
+          {modal}
         </div>
       </body>
     </html>

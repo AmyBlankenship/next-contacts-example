@@ -6,6 +6,7 @@
     "start": "next start",
     "migrate:up": "ley up",
     "migrate:down": "ley down --all",
+    "playwrightDebugDev": "cross-env NODE_ENV=test npm run dev",
     "test:e2e": "playwright test",
     "pretest:e2e": "docker-compose up -d --wait pg",
     "posttest:e2e": "docker-compose down -v --remove-orphans"
@@ -15,7 +16,8 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "cross-env": "^7.0.3",
-    "next": "latest",
+    "lodash": "^4.17.21",
+    "next": "canary",
     "postgres": "^3.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.35.1",
+    "@types/lodash": "^4.14.195",
     "dotenv": "^16.0.3",
     "ley": "^0.8.1",
     "pg-connection-string": "^2.5.0"
